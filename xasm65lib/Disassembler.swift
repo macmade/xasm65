@@ -26,6 +26,11 @@ import Foundation
 
 public class Disassembler
 {
-    public init()
+    public convenience init( url: URL, origin: UInt16 ) throws
+    {
+        try self.init( data: try Data( contentsOf: url ), origin: origin )
+    }
+
+    public init( data: Data, origin: UInt16 ) throws
     {}
 }

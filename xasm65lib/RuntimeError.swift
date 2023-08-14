@@ -24,24 +24,17 @@
 
 import Foundation
 
-public class Assembler
+public class RuntimeError: LocalizedError
 {
-    public convenience init( url: URL ) throws
+    public private( set ) var message: String
+
+    public init( message: String )
     {
-        try self.init( data: try Data( contentsOf: url ) )
+        self.message = message
     }
 
-    public convenience init( data: Data ) throws
+    public var errorDescription: String?
     {
-        guard let source = String( data: data, encoding: .utf8 )
-        else
-        {
-            throw RuntimeError( message: "Cannot read data" )
-        }
-
-        try self.init( source: source )
+        self.message
     }
-
-    public init( source: String ) throws
-    {}
 }
