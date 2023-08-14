@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0564AB782A8AB37F00EF1950 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564AB772A8AB37F00EF1950 /* Instruction.swift */; };
 		05DED75C2A8AAC4900DA42F9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED75B2A8AAC4900DA42F9 /* main.swift */; };
 		05DED7AF2A8AAF1500DA42F9 /* Disassembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED7AE2A8AAF1500DA42F9 /* Disassembler.swift */; };
 		05DED7B12A8AAF1C00DA42F9 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED7B02A8AAF1C00DA42F9 /* Assembler.swift */; };
@@ -48,6 +49,7 @@
 /* Begin PBXFileReference section */
 		0564AB752A8AB18500EF1950 /* xasm65lib.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = xasm65lib.xctestplan; sourceTree = "<group>"; };
 		0564AB762A8AB19100EF1950 /* xasm65.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = xasm65.xctestplan; sourceTree = "<group>"; };
+		0564AB772A8AB37F00EF1950 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		05DED7582A8AAC4900DA42F9 /* xasm65 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xasm65; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DED75B2A8AAC4900DA42F9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05DED7622A8AACF900DA42F9 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 		05DED7A62A8AAF0400DA42F9 /* xasm65lib */ = {
 			isa = PBXGroup;
 			children = (
+				0564AB772A8AB37F00EF1950 /* Instruction.swift */,
 				05DED7AE2A8AAF1500DA42F9 /* Disassembler.swift */,
 				05DED7B02A8AAF1C00DA42F9 /* Assembler.swift */,
 			);
@@ -471,6 +474,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0564AB782A8AB37F00EF1950 /* Instruction.swift in Sources */,
 				05DED7B12A8AAF1C00DA42F9 /* Assembler.swift in Sources */,
 				05DED7AF2A8AAF1500DA42F9 /* Disassembler.swift in Sources */,
 			);
