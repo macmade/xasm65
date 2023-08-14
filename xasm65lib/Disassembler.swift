@@ -54,12 +54,7 @@ public class Disassembler
     {
         self.origin  = origin
         self.data    = data
-        self.options = options
-
-        if self.options.isEmpty
-        {
-            self.options = [ .address, .bytes, .disassembly ]
-        }
+        self.options = options.isEmpty ? [ .address, .bytes, .disassembly ] : options
     }
 
     private var dataAvailable: Bool
