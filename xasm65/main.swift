@@ -23,5 +23,16 @@
  ******************************************************************************/
 
 import Foundation
+import xasm65lib
 
-print( "xasm65" )
+do
+{
+    let url          = Bundle.main.bundleURL.appendingPathComponent( "wozmon.bin" )
+    let disassembler = try Disassembler( url: url, origin: 0xFF00, options: [] )
+
+    print( try disassembler.disassemble() )
+}
+catch
+{
+    print( error.localizedDescription )
+}
