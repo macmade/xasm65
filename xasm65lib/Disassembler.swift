@@ -69,6 +69,8 @@ public class Disassembler
 
     public func disassemble() throws -> String
     {
+        self.offset = 0
+
         var instructions: [ ( address: UInt64, bytes: [ UInt8 ], disassembly: String ) ] = []
 
         while self.dataAvailable
