@@ -28,7 +28,7 @@ public class Disassembler
 {
     private let origin:  UInt16
     private let data:    Data
-    private var options: Options
+    private let options: Options
     private var offset:  Int = 0
 
     public struct Options: OptionSet
