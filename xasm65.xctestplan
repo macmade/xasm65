@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "B884197C-BA31-4E88-B011-9E2FDC2FC1A3",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:xasm65.xcodeproj",
+      "identifier" : "05DED7572A8AAC4900DA42F9",
+      "name" : "xasm65"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:xasm65.xcodeproj",
+        "identifier" : "05DED7C92A8AB02700DA42F9",
+        "name" : "xasm65-tests"
+      }
+    }
+  ],
+  "version" : 1
+}

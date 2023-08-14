@@ -1,0 +1,618 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05DED75C2A8AAC4900DA42F9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED75B2A8AAC4900DA42F9 /* main.swift */; };
+		05DED7AF2A8AAF1500DA42F9 /* Disassembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED7AE2A8AAF1500DA42F9 /* Disassembler.swift */; };
+		05DED7B12A8AAF1C00DA42F9 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED7B02A8AAF1C00DA42F9 /* Assembler.swift */; };
+		05DED7B32A8AAF4200DA42F9 /* libxasm65lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DED7A52A8AAF0300DA42F9 /* libxasm65lib.a */; };
+		05DED7CD2A8AB02700DA42F9 /* Test-Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED7CC2A8AB02700DA42F9 /* Test-Assembler.swift */; };
+		05DED7CE2A8AB02700DA42F9 /* libxasm65lib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05DED7A52A8AAF0300DA42F9 /* libxasm65lib.a */; };
+		05DED7D52A8AB09D00DA42F9 /* Test-Disassembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED7D42A8AB09D00DA42F9 /* Test-Disassembler.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		05DED7B42A8AAF4200DA42F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05DED7502A8AAC4900DA42F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05DED7A42A8AAF0300DA42F9;
+			remoteInfo = xasm65lib;
+		};
+		05DED7CF2A8AB02700DA42F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 05DED7502A8AAC4900DA42F9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 05DED7A42A8AAF0300DA42F9;
+			remoteInfo = xasm65lib;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		05DED7562A8AAC4900DA42F9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0564AB752A8AB18500EF1950 /* xasm65lib.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = xasm65lib.xctestplan; sourceTree = "<group>"; };
+		0564AB762A8AB19100EF1950 /* xasm65.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = xasm65.xctestplan; sourceTree = "<group>"; };
+		05DED7582A8AAC4900DA42F9 /* xasm65 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xasm65; sourceTree = BUILT_PRODUCTS_DIR; };
+		05DED75B2A8AAC4900DA42F9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		05DED7622A8AACF900DA42F9 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		05DED7632A8AACF900DA42F9 /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
+		05DED7642A8AACF900DA42F9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		05DED7662A8AAD7B00DA42F9 /* FUNDING.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = FUNDING.yml; sourceTree = "<group>"; };
+		05DED7682A8AAD7B00DA42F9 /* ci-mac.yaml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = "ci-mac.yaml"; sourceTree = "<group>"; };
+		05DED76A2A8AAE2600DA42F9 /* CODE_OF_CONDUCT.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CODE_OF_CONDUCT.md; sourceTree = "<group>"; };
+		05DED76B2A8AAE2600DA42F9 /* Release - ccache.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release - ccache.xcconfig"; sourceTree = "<group>"; };
+		05DED76C2A8AAE2600DA42F9 /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
+		05DED76D2A8AAE2600DA42F9 /* Debug - ccache.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug - ccache.xcconfig"; sourceTree = "<group>"; };
+		05DED76E2A8AAE2600DA42F9 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		05DED76F2A8AAE2600DA42F9 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		05DED7702A8AAE2600DA42F9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		05DED7712A8AAE2600DA42F9 /* Release - Library.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Release - Library.xcconfig"; sourceTree = "<group>"; };
+		05DED7732A8AAE2600DA42F9 /* Signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Signing.xcconfig; sourceTree = "<group>"; };
+		05DED7742A8AAE2600DA42F9 /* Architectures.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Architectures.xcconfig; sourceTree = "<group>"; };
+		05DED7762A8AAE2600DA42F9 /* Issues.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Issues.xcconfig; sourceTree = "<group>"; };
+		05DED7782A8AAE2600DA42F9 /* Apple-APIs.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Apple-APIs.xcconfig"; sourceTree = "<group>"; };
+		05DED7792A8AAE2600DA42F9 /* Generic-Issues.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Generic-Issues.xcconfig"; sourceTree = "<group>"; };
+		05DED77A2A8AAE2600DA42F9 /* Security.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Security.xcconfig; sourceTree = "<group>"; };
+		05DED77B2A8AAE2600DA42F9 /* Objective-C.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Objective-C.xcconfig"; sourceTree = "<group>"; };
+		05DED77C2A8AAE2600DA42F9 /* Analysis-Policy.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Analysis-Policy.xcconfig"; sourceTree = "<group>"; };
+		05DED77D2A8AAE2600DA42F9 /* Deployment.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Deployment.xcconfig; sourceTree = "<group>"; };
+		05DED77E2A8AAE2600DA42F9 /* Build-Options.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Build-Options.xcconfig"; sourceTree = "<group>"; };
+		05DED77F2A8AAE2600DA42F9 /* Swift-Compiler.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Swift-Compiler.xcconfig"; sourceTree = "<group>"; };
+		05DED7802A8AAE2600DA42F9 /* Static-Analyzer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Static-Analyzer.xcconfig"; sourceTree = "<group>"; };
+		05DED7822A8AAE2600DA42F9 /* Warnings-Policies.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Warnings-Policies.xcconfig"; sourceTree = "<group>"; };
+		05DED7832A8AAE2600DA42F9 /* Code-Generation.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Code-Generation.xcconfig"; sourceTree = "<group>"; };
+		05DED7842A8AAE2600DA42F9 /* Language.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Language.xcconfig; sourceTree = "<group>"; };
+		05DED7852A8AAE2600DA42F9 /* General.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = General.xcconfig; sourceTree = "<group>"; };
+		05DED7862A8AAE2600DA42F9 /* Search-Paths.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Search-Paths.xcconfig"; sourceTree = "<group>"; };
+		05DED7872A8AAE2600DA42F9 /* Apple-LLVM.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Apple-LLVM.xcconfig"; sourceTree = "<group>"; };
+		05DED78A2A8AAE2600DA42F9 /* Modules.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Modules.xcconfig; sourceTree = "<group>"; };
+		05DED78B2A8AAE2600DA42F9 /* Objective-C.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Objective-C.xcconfig"; sourceTree = "<group>"; };
+		05DED78C2A8AAE2600DA42F9 /* C++.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "C++.xcconfig"; sourceTree = "<group>"; };
+		05DED78D2A8AAE2600DA42F9 /* Code-Generation.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Code-Generation.xcconfig"; sourceTree = "<group>"; };
+		05DED78E2A8AAE2600DA42F9 /* Address-Sanitizer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Address-Sanitizer.xcconfig"; sourceTree = "<group>"; };
+		05DED78F2A8AAE2600DA42F9 /* Language.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Language.xcconfig; sourceTree = "<group>"; };
+		05DED7902A8AAE2600DA42F9 /* Warnings.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Warnings.xcconfig; sourceTree = "<group>"; };
+		05DED7912A8AAE2600DA42F9 /* Undefined-Behavior-Sanitizer.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Undefined-Behavior-Sanitizer.xcconfig"; sourceTree = "<group>"; };
+		05DED7922A8AAE2600DA42F9 /* Warning-Policies.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Warning-Policies.xcconfig"; sourceTree = "<group>"; };
+		05DED7942A8AAE2600DA42F9 /* Objective-C-ARC.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Objective-C-ARC.xcconfig"; sourceTree = "<group>"; };
+		05DED7952A8AAE2600DA42F9 /* Objective-C.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Objective-C.xcconfig"; sourceTree = "<group>"; };
+		05DED7962A8AAE2600DA42F9 /* C++.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "C++.xcconfig"; sourceTree = "<group>"; };
+		05DED7972A8AAE2600DA42F9 /* All-Languages.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "All-Languages.xcconfig"; sourceTree = "<group>"; };
+		05DED7982A8AAE2600DA42F9 /* Preprocessing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Preprocessing.xcconfig; sourceTree = "<group>"; };
+		05DED7992A8AAE2600DA42F9 /* Debug - Library.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug - Library.xcconfig"; sourceTree = "<group>"; };
+		05DED79A2A8AAE2600DA42F9 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		05DED79C2A8AAE2600DA42F9 /* ccache-config.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "ccache-config.sh"; sourceTree = "<group>"; };
+		05DED79D2A8AAE2600DA42F9 /* ccache.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ccache.sh; sourceTree = "<group>"; };
+		05DED79F2A8AAE2600DA42F9 /* FUNDING.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = FUNDING.yml; sourceTree = "<group>"; };
+		05DED7A02A8AAE2600DA42F9 /* Debug - zld.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Debug - zld.xcconfig"; sourceTree = "<group>"; };
+		05DED7A52A8AAF0300DA42F9 /* libxasm65lib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libxasm65lib.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		05DED7AE2A8AAF1500DA42F9 /* Disassembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Disassembler.swift; sourceTree = "<group>"; };
+		05DED7B02A8AAF1C00DA42F9 /* Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembler.swift; sourceTree = "<group>"; };
+		05DED7CA2A8AB02700DA42F9 /* xasm65-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xasm65-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		05DED7CC2A8AB02700DA42F9 /* Test-Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test-Assembler.swift"; sourceTree = "<group>"; };
+		05DED7D42A8AB09D00DA42F9 /* Test-Disassembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test-Disassembler.swift"; sourceTree = "<group>"; };
+		05DED7D82A8AB0F500DA42F9 /* xasm65.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = xasm65.xctestplan; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		05DED7552A8AAC4900DA42F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DED7B32A8AAF4200DA42F9 /* libxasm65lib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DED7A32A8AAF0300DA42F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DED7C72A8AB02700DA42F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DED7CE2A8AB02700DA42F9 /* libxasm65lib.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05DED74F2A8AAC4900DA42F9 = {
+			isa = PBXGroup;
+			children = (
+				05DED7692A8AAE2600DA42F9 /* xcconfig */,
+				05DED7642A8AACF900DA42F9 /* README.md */,
+				05DED7622A8AACF900DA42F9 /* LICENSE */,
+				05DED7632A8AACF900DA42F9 /* CODE_OF_CONDUCT.md */,
+				0564AB762A8AB19100EF1950 /* xasm65.xctestplan */,
+				0564AB752A8AB18500EF1950 /* xasm65lib.xctestplan */,
+				05DED7652A8AAD7B00DA42F9 /* .github */,
+				05DED75A2A8AAC4900DA42F9 /* xasm65 */,
+				05DED7A62A8AAF0400DA42F9 /* xasm65lib */,
+				05DED7CB2A8AB02700DA42F9 /* xasm65-tests */,
+				05DED7592A8AAC4900DA42F9 /* Products */,
+				05DED7B22A8AAF4200DA42F9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		05DED7592A8AAC4900DA42F9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7582A8AAC4900DA42F9 /* xasm65 */,
+				05DED7A52A8AAF0300DA42F9 /* libxasm65lib.a */,
+				05DED7CA2A8AB02700DA42F9 /* xasm65-tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		05DED75A2A8AAC4900DA42F9 /* xasm65 */ = {
+			isa = PBXGroup;
+			children = (
+				05DED75B2A8AAC4900DA42F9 /* main.swift */,
+			);
+			path = xasm65;
+			sourceTree = "<group>";
+		};
+		05DED7652A8AAD7B00DA42F9 /* .github */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7662A8AAD7B00DA42F9 /* FUNDING.yml */,
+				05DED7672A8AAD7B00DA42F9 /* workflows */,
+			);
+			path = .github;
+			sourceTree = "<group>";
+		};
+		05DED7672A8AAD7B00DA42F9 /* workflows */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7682A8AAD7B00DA42F9 /* ci-mac.yaml */,
+			);
+			path = workflows;
+			sourceTree = "<group>";
+		};
+		05DED7692A8AAE2600DA42F9 /* xcconfig */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7D82A8AB0F500DA42F9 /* xasm65.xctestplan */,
+				05DED76A2A8AAE2600DA42F9 /* CODE_OF_CONDUCT.md */,
+				05DED76B2A8AAE2600DA42F9 /* Release - ccache.xcconfig */,
+				05DED76C2A8AAE2600DA42F9 /* Common.xcconfig */,
+				05DED76D2A8AAE2600DA42F9 /* Debug - ccache.xcconfig */,
+				05DED76E2A8AAE2600DA42F9 /* Debug.xcconfig */,
+				05DED76F2A8AAE2600DA42F9 /* Release.xcconfig */,
+				05DED7702A8AAE2600DA42F9 /* README.md */,
+				05DED7712A8AAE2600DA42F9 /* Release - Library.xcconfig */,
+				05DED7722A8AAE2600DA42F9 /* Common */,
+				05DED7992A8AAE2600DA42F9 /* Debug - Library.xcconfig */,
+				05DED79A2A8AAE2600DA42F9 /* .gitignore */,
+				05DED79B2A8AAE2600DA42F9 /* Scripts */,
+				05DED79E2A8AAE2600DA42F9 /* .github */,
+				05DED7A02A8AAE2600DA42F9 /* Debug - zld.xcconfig */,
+			);
+			name = xcconfig;
+			path = Submodules/xcconfig;
+			sourceTree = "<group>";
+		};
+		05DED7722A8AAE2600DA42F9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7732A8AAE2600DA42F9 /* Signing.xcconfig */,
+				05DED7742A8AAE2600DA42F9 /* Architectures.xcconfig */,
+				05DED7752A8AAE2600DA42F9 /* Static-Analyzer */,
+				05DED77D2A8AAE2600DA42F9 /* Deployment.xcconfig */,
+				05DED77E2A8AAE2600DA42F9 /* Build-Options.xcconfig */,
+				05DED77F2A8AAE2600DA42F9 /* Swift-Compiler.xcconfig */,
+				05DED7802A8AAE2600DA42F9 /* Static-Analyzer.xcconfig */,
+				05DED7812A8AAE2600DA42F9 /* Swift-Compiler */,
+				05DED7862A8AAE2600DA42F9 /* Search-Paths.xcconfig */,
+				05DED7872A8AAE2600DA42F9 /* Apple-LLVM.xcconfig */,
+				05DED7882A8AAE2600DA42F9 /* Apple-LLVM */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		05DED7752A8AAE2600DA42F9 /* Static-Analyzer */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7762A8AAE2600DA42F9 /* Issues.xcconfig */,
+				05DED7772A8AAE2600DA42F9 /* Issues */,
+			);
+			path = "Static-Analyzer";
+			sourceTree = "<group>";
+		};
+		05DED7772A8AAE2600DA42F9 /* Issues */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7782A8AAE2600DA42F9 /* Apple-APIs.xcconfig */,
+				05DED7792A8AAE2600DA42F9 /* Generic-Issues.xcconfig */,
+				05DED77A2A8AAE2600DA42F9 /* Security.xcconfig */,
+				05DED77B2A8AAE2600DA42F9 /* Objective-C.xcconfig */,
+				05DED77C2A8AAE2600DA42F9 /* Analysis-Policy.xcconfig */,
+			);
+			path = Issues;
+			sourceTree = "<group>";
+		};
+		05DED7812A8AAE2600DA42F9 /* Swift-Compiler */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7822A8AAE2600DA42F9 /* Warnings-Policies.xcconfig */,
+				05DED7832A8AAE2600DA42F9 /* Code-Generation.xcconfig */,
+				05DED7842A8AAE2600DA42F9 /* Language.xcconfig */,
+				05DED7852A8AAE2600DA42F9 /* General.xcconfig */,
+			);
+			path = "Swift-Compiler";
+			sourceTree = "<group>";
+		};
+		05DED7882A8AAE2600DA42F9 /* Apple-LLVM */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7892A8AAE2600DA42F9 /* Language */,
+				05DED78D2A8AAE2600DA42F9 /* Code-Generation.xcconfig */,
+				05DED78E2A8AAE2600DA42F9 /* Address-Sanitizer.xcconfig */,
+				05DED78F2A8AAE2600DA42F9 /* Language.xcconfig */,
+				05DED7902A8AAE2600DA42F9 /* Warnings.xcconfig */,
+				05DED7912A8AAE2600DA42F9 /* Undefined-Behavior-Sanitizer.xcconfig */,
+				05DED7922A8AAE2600DA42F9 /* Warning-Policies.xcconfig */,
+				05DED7932A8AAE2600DA42F9 /* Warnings */,
+				05DED7982A8AAE2600DA42F9 /* Preprocessing.xcconfig */,
+			);
+			path = "Apple-LLVM";
+			sourceTree = "<group>";
+		};
+		05DED7892A8AAE2600DA42F9 /* Language */ = {
+			isa = PBXGroup;
+			children = (
+				05DED78A2A8AAE2600DA42F9 /* Modules.xcconfig */,
+				05DED78B2A8AAE2600DA42F9 /* Objective-C.xcconfig */,
+				05DED78C2A8AAE2600DA42F9 /* C++.xcconfig */,
+			);
+			path = Language;
+			sourceTree = "<group>";
+		};
+		05DED7932A8AAE2600DA42F9 /* Warnings */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7942A8AAE2600DA42F9 /* Objective-C-ARC.xcconfig */,
+				05DED7952A8AAE2600DA42F9 /* Objective-C.xcconfig */,
+				05DED7962A8AAE2600DA42F9 /* C++.xcconfig */,
+				05DED7972A8AAE2600DA42F9 /* All-Languages.xcconfig */,
+			);
+			path = Warnings;
+			sourceTree = "<group>";
+		};
+		05DED79B2A8AAE2600DA42F9 /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				05DED79C2A8AAE2600DA42F9 /* ccache-config.sh */,
+				05DED79D2A8AAE2600DA42F9 /* ccache.sh */,
+			);
+			path = Scripts;
+			sourceTree = "<group>";
+		};
+		05DED79E2A8AAE2600DA42F9 /* .github */ = {
+			isa = PBXGroup;
+			children = (
+				05DED79F2A8AAE2600DA42F9 /* FUNDING.yml */,
+			);
+			path = .github;
+			sourceTree = "<group>";
+		};
+		05DED7A62A8AAF0400DA42F9 /* xasm65lib */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7AE2A8AAF1500DA42F9 /* Disassembler.swift */,
+				05DED7B02A8AAF1C00DA42F9 /* Assembler.swift */,
+			);
+			path = xasm65lib;
+			sourceTree = "<group>";
+		};
+		05DED7B22A8AAF4200DA42F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		05DED7CB2A8AB02700DA42F9 /* xasm65-tests */ = {
+			isa = PBXGroup;
+			children = (
+				05DED7CC2A8AB02700DA42F9 /* Test-Assembler.swift */,
+				05DED7D42A8AB09D00DA42F9 /* Test-Disassembler.swift */,
+			);
+			path = "xasm65-tests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		05DED7A12A8AAF0300DA42F9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		05DED7572A8AAC4900DA42F9 /* xasm65 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05DED75F2A8AAC4900DA42F9 /* Build configuration list for PBXNativeTarget "xasm65" */;
+			buildPhases = (
+				05DED7542A8AAC4900DA42F9 /* Sources */,
+				05DED7552A8AAC4900DA42F9 /* Frameworks */,
+				05DED7562A8AAC4900DA42F9 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05DED7B52A8AAF4200DA42F9 /* PBXTargetDependency */,
+			);
+			name = xasm65;
+			productName = xasm65;
+			productReference = 05DED7582A8AAC4900DA42F9 /* xasm65 */;
+			productType = "com.apple.product-type.tool";
+		};
+		05DED7A42A8AAF0300DA42F9 /* xasm65lib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05DED7AB2A8AAF0400DA42F9 /* Build configuration list for PBXNativeTarget "xasm65lib" */;
+			buildPhases = (
+				05DED7A12A8AAF0300DA42F9 /* Headers */,
+				05DED7A22A8AAF0300DA42F9 /* Sources */,
+				05DED7A32A8AAF0300DA42F9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = xasm65lib;
+			productName = xasm65lib;
+			productReference = 05DED7A52A8AAF0300DA42F9 /* libxasm65lib.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		05DED7C92A8AB02700DA42F9 /* xasm65-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 05DED7D12A8AB02700DA42F9 /* Build configuration list for PBXNativeTarget "xasm65-tests" */;
+			buildPhases = (
+				05DED7C62A8AB02700DA42F9 /* Sources */,
+				05DED7C72A8AB02700DA42F9 /* Frameworks */,
+				05DED7C82A8AB02700DA42F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				05DED7D02A8AB02700DA42F9 /* PBXTargetDependency */,
+			);
+			name = "xasm65-tests";
+			productName = "xasm65-tests";
+			productReference = 05DED7CA2A8AB02700DA42F9 /* xasm65-tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		05DED7502A8AAC4900DA42F9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					05DED7572A8AAC4900DA42F9 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					05DED7A42A8AAF0300DA42F9 = {
+						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
+					};
+					05DED7C92A8AB02700DA42F9 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 05DED7532A8AAC4900DA42F9 /* Build configuration list for PBXProject "xasm65" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 05DED74F2A8AAC4900DA42F9;
+			productRefGroup = 05DED7592A8AAC4900DA42F9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				05DED7572A8AAC4900DA42F9 /* xasm65 */,
+				05DED7A42A8AAF0300DA42F9 /* xasm65lib */,
+				05DED7C92A8AB02700DA42F9 /* xasm65-tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		05DED7C82A8AB02700DA42F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		05DED7542A8AAC4900DA42F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DED75C2A8AAC4900DA42F9 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DED7A22A8AAF0300DA42F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DED7B12A8AAF1C00DA42F9 /* Assembler.swift in Sources */,
+				05DED7AF2A8AAF1500DA42F9 /* Disassembler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		05DED7C62A8AB02700DA42F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DED7CD2A8AB02700DA42F9 /* Test-Assembler.swift in Sources */,
+				05DED7D52A8AB09D00DA42F9 /* Test-Disassembler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		05DED7B52A8AAF4200DA42F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05DED7A42A8AAF0300DA42F9 /* xasm65lib */;
+			targetProxy = 05DED7B42A8AAF4200DA42F9 /* PBXContainerItemProxy */;
+		};
+		05DED7D02A8AB02700DA42F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 05DED7A42A8AAF0300DA42F9 /* xasm65lib */;
+			targetProxy = 05DED7CF2A8AB02700DA42F9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		05DED75D2A8AAC4900DA42F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05DED76E2A8AAE2600DA42F9 /* Debug.xcconfig */;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		05DED75E2A8AAC4900DA42F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05DED76F2A8AAE2600DA42F9 /* Release.xcconfig */;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		05DED7602A8AAC4900DA42F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05DED7612A8AAC4900DA42F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		05DED7AC2A8AAF0400DA42F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		05DED7AD2A8AAF0400DA42F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		05DED7D22A8AB02700DA42F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.xasm65-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		05DED7D32A8AB02700DA42F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.xs-labs.xasm65-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05DED7532A8AAC4900DA42F9 /* Build configuration list for PBXProject "xasm65" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05DED75D2A8AAC4900DA42F9 /* Debug */,
+				05DED75E2A8AAC4900DA42F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05DED75F2A8AAC4900DA42F9 /* Build configuration list for PBXNativeTarget "xasm65" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05DED7602A8AAC4900DA42F9 /* Debug */,
+				05DED7612A8AAC4900DA42F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05DED7AB2A8AAF0400DA42F9 /* Build configuration list for PBXNativeTarget "xasm65lib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05DED7AC2A8AAF0400DA42F9 /* Debug */,
+				05DED7AD2A8AAF0400DA42F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		05DED7D12A8AB02700DA42F9 /* Build configuration list for PBXNativeTarget "xasm65-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				05DED7D22A8AB02700DA42F9 /* Debug */,
+				05DED7D32A8AB02700DA42F9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 05DED7502A8AAC4900DA42F9 /* Project object */;
+}
