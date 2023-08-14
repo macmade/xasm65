@@ -107,7 +107,6 @@
 		05DED7CA2A8AB02700DA42F9 /* xasm65-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "xasm65-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DED7CC2A8AB02700DA42F9 /* Test-Assembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test-Assembler.swift"; sourceTree = "<group>"; };
 		05DED7D42A8AB09D00DA42F9 /* Test-Disassembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Test-Disassembler.swift"; sourceTree = "<group>"; };
-		05DED7D82A8AB0F500DA42F9 /* xasm65.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = xasm65.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,9 +143,9 @@
 				05DED7642A8AACF900DA42F9 /* README.md */,
 				05DED7622A8AACF900DA42F9 /* LICENSE */,
 				05DED7632A8AACF900DA42F9 /* CODE_OF_CONDUCT.md */,
+				05DED7652A8AAD7B00DA42F9 /* .github */,
 				0564AB762A8AB19100EF1950 /* xasm65.xctestplan */,
 				0564AB752A8AB18500EF1950 /* xasm65lib.xctestplan */,
-				05DED7652A8AAD7B00DA42F9 /* .github */,
 				05DED75A2A8AAC4900DA42F9 /* xasm65 */,
 				05DED7A62A8AAF0400DA42F9 /* xasm65lib */,
 				05DED7CB2A8AB02700DA42F9 /* xasm65-tests */,
@@ -193,7 +192,6 @@
 		05DED7692A8AAE2600DA42F9 /* xcconfig */ = {
 			isa = PBXGroup;
 			children = (
-				05DED7D82A8AB0F500DA42F9 /* xasm65.xctestplan */,
 				05DED76A2A8AAE2600DA42F9 /* CODE_OF_CONDUCT.md */,
 				05DED76B2A8AAE2600DA42F9 /* Release - ccache.xcconfig */,
 				05DED76C2A8AAE2600DA42F9 /* Common.xcconfig */,
