@@ -26,7 +26,7 @@ import Foundation
 
 public class Instruction
 {
-    public enum AddressingMode
+    public enum AddressingMode: CustomStringConvertible
     {
         case implied
         case accumulator
@@ -41,6 +41,26 @@ public class Instruction
         case indirect
         case indirectX
         case indirectY
+
+        public var description: String
+        {
+            switch self
+            {
+                case .implied:     return "Implied"
+                case .accumulator: return "Accumulator"
+                case .immediate:   return "Immediate"
+                case .zeroPage:    return "ZeroPage"
+                case .zeroPageX:   return "ZeroPage,X"
+                case .zeroPageY:   return "ZeroPage,Y"
+                case .relative:    return "Relative"
+                case .absolute:    return "Absolute"
+                case .absoluteX:   return "Absolute,X"
+                case .absoluteY:   return "Absolute,Y"
+                case .indirect:    return "(Indirect)"
+                case .indirectX:   return "(Indirect,X)"
+                case .indirectY:   return "(Indirect),Y"
+            }
+        }
     }
 
     public var mnemonic:       String
