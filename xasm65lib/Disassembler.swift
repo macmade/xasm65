@@ -32,6 +32,7 @@ public class Disassembler
     private var instructions: UInt64
     private let stream:       ByteStream
     private let options:      Options
+    private var separator:    String
     private var comments:     [ UInt16: String ]
     private var labels:       [ UInt16: String ]
 
@@ -49,27 +50,27 @@ public class Disassembler
         }
     }
 
-    public class func disassemble( stream: ByteStream, origin: UInt16, size: UInt64, options: Options, comments: [ UInt16: String ] = [ : ], labels: [ UInt16: String ] = [ : ] ) throws -> String
+    public class func disassemble( stream: ByteStream, origin: UInt16, size: UInt64, options: Options, separator: String = "    ", comments: [ UInt16: String ] = [ : ], labels: [ UInt16: String ] = [ : ] ) throws -> String
     {
         if size == 0
         {
             throw RuntimeError( message: "" )
         }
 
-        return try Disassembler( stream: stream, origin: origin, size: size, instructions: 0, options: options, comments: comments, labels: labels ).disassemble()
+        return try Disassembler( stream: stream, origin: origin, size: size, instructions: 0, options: options, separator: separator, comments: comments, labels: labels ).disassemble()
     }
 
-    public class func disassemble( stream: ByteStream, origin: UInt16, instructions: UInt64, options: Options, comments: [ UInt16: String ] = [ : ], labels: [ UInt16: String ] = [ : ] ) throws -> String
+    public class func disassemble( stream: ByteStream, origin: UInt16, instructions: UInt64, options: Options, separator: String = "    ", comments: [ UInt16: String ] = [ : ], labels: [ UInt16: String ] = [ : ] ) throws -> String
     {
         if instructions == 0
         {
             throw RuntimeError( message: "" )
         }
 
-        return try Disassembler( stream: stream, origin: origin, size: 0, instructions: instructions, options: options, comments: comments, labels: labels ).disassemble()
+        return try Disassembler( stream: stream, origin: origin, size: 0, instructions: instructions, options: options, separator: separator, comments: comments, labels: labels ).disassemble()
     }
 
-    private init( stream: ByteStream, origin: UInt16, size: UInt64, instructions: UInt64, options: Options, comments: [ UInt16: String ], labels: [ UInt16: String ] ) throws
+    private init( stream: ByteStream, origin: UInt16, size: UInt64, instructions: UInt64, options: Options, separator: String, comments: [ UInt16: String ], labels: [ UInt16: String ] ) throws
     {
         self.origin       = origin
         self.address      = UInt64( origin )
@@ -77,6 +78,7 @@ public class Disassembler
         self.instructions = instructions
         self.stream       = stream
         self.options      = options.isEmpty ? [ .address, .bytes, .disassembly ] : options
+        self.separator    = separator
         self.comments     = comments
         self.labels       = labels
     }
@@ -139,7 +141,7 @@ public class Disassembler
             }
         }
 
-        return String.aligningComponents( in: strings, componentSeparator: "    ", lineSeparator: "\n" )
+        return String.aligningComponents( in: strings, componentSeparator: self.separator, lineSeparator: "\n" )
     }
 
     private func readUInt8() throws -> UInt8
