@@ -26,12 +26,14 @@ import Foundation
 
 public class Assembler
 {
-    public convenience init( url: URL ) throws
+    private let source: String
+
+    public class func assemble( url: URL ) throws -> Data
     {
-        try self.init( data: try Data( contentsOf: url ) )
+        try self.assemble( data: try Data( contentsOf: url ) )
     }
 
-    public convenience init( data: Data ) throws
+    public class func assemble( data: Data ) throws -> Data
     {
         guard let source = String( data: data, encoding: .utf8 )
         else
@@ -39,9 +41,116 @@ public class Assembler
             throw RuntimeError( message: "Cannot read data" )
         }
 
-        try self.init( source: source )
+        return try self.assemble( source: source )
     }
 
-    public init( source: String ) throws
-    {}
+    public class func assemble( source: String ) throws -> Data
+    {
+        try Assembler( source: source ).assemble()
+    }
+
+    private init( source: String ) throws
+    {
+        self.source = source
+    }
+
+    private func assemble() throws -> Data
+    {
+        let ( instructions, variables ) = try Assembler.components( in: Assembler.tokens( in: self.source ) )
+
+        variables.forEach
+        {
+            print( "\( $0.line ): \( $0.name ) = \( $0.value )" )
+        }
+
+        instructions.forEach
+        {
+            let tokens = [ $0.label, $0.mnemonic, $0.operand ].compactMap { $0 }
+
+            print( "\( $0.line ): \( tokens.joined( separator: " " ) )" )
+        }
+
+        return Data()
+    }
+
+    private class func lines( in source: String ) -> [ ( line: UInt, text: String ) ]
+    {
+        source.components( separatedBy: "\n" ).enumerated().map
+        {
+            ( line: UInt( $0.offset + 1 ), text: $0.element )
+        }
+    }
+
+    private class func stripComments( in lines: [ ( line: UInt, text: String ) ] ) -> [ ( line: UInt, text: String ) ]
+    {
+        lines.map
+        {
+            guard let r = $0.text.range( of: ";" )
+            else
+            {
+                return $0
+            }
+
+            return ( line: $0.line, text: String( $0.text[ $0.text.startIndex ..< r.lowerBound ] ) )
+        }
+    }
+
+    private class func tokens( in source: String ) -> [ ( line: UInt, tokens: [ String ] ) ]
+    {
+        self.stripComments( in: self.lines( in: source ) ).filter
+        {
+            $0.text.trimmingCharacters( in: .whitespaces ).isEmpty == false
+        }
+        .map
+        {
+            (
+                line:   $0.line,
+                tokens: $0.text.components( separatedBy: .whitespaces ).filter
+                {
+                    $0.isEmpty == false
+                }
+            )
+        }
+    }
+
+    public class func components( in tokens: [ ( line: UInt, tokens: [ String ] ) ] ) throws -> ( instructions: [ AssemblerInstruction ], variables: [ AssemblerVariable ] )
+    {
+        let variables = tokens.filter
+        {
+            guard $0.tokens.count == 3
+            else
+            {
+                return false
+            }
+
+            return $0.tokens[ 1 ] == "equ"
+        }
+        .map
+        {
+            AssemblerVariable( line: $0.line, name: $0.tokens[ 0 ], value: $0.tokens[ 2 ] )
+        }
+
+        try variables.forEach
+        {
+            variable in if let redefined = variables.first( where: { $0.name == variable.name && $0.line != variable.line } )
+            {
+                throw SyntaxError( line: redefined.line, message: "Variable \( variable.name ) is already defined at line \( variable.line )" )
+            }
+        }
+
+        let instructions = try tokens.filter
+        {
+            token in variables.contains
+            {
+                $0.line == token.line
+            }
+            == false
+        }
+        .map
+        {
+            try AssemblerInstruction( line: $0.line, tokens: $0.tokens, variables: variables )
+        }
+
+        return ( instructions: instructions, variables: variables )
+    }
 }

@@ -11,6 +11,13 @@
 		0564AB7C2A8AB53B00EF1950 /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564AB7B2A8AB53B00EF1950 /* RuntimeError.swift */; };
 		0564AB942A8AB64E00EF1950 /* wozmon.bin in Resources */ = {isa = PBXBuildFile; fileRef = 0564AB922A8AB64E00EF1950 /* wozmon.bin */; };
 		0564AB962A8ABC2B00EF1950 /* wozmon.bin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0564AB922A8AB64E00EF1950 /* wozmon.bin */; };
+		0564ABAE2A8ADEF300EF1950 /* wozmon.s in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABAD2A8ADEF200EF1950 /* wozmon.s */; };
+		0564ABAF2A8ADEF900EF1950 /* wozmon.s in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0564ABAD2A8ADEF200EF1950 /* wozmon.s */; };
+		0564ABB12A8B712F00EF1950 /* SyntaxError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABB02A8B712F00EF1950 /* SyntaxError.swift */; };
+		0564ABB32A8B729600EF1950 /* AssemblerInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABB22A8B729600EF1950 /* AssemblerInstruction.swift */; };
+		0564ABB52A8B733100EF1950 /* AssemblerVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABB42A8B733100EF1950 /* AssemblerVariable.swift */; };
+		0564ABBF2A8B7F1D00EF1950 /* ByteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABBE2A8B7F1D00EF1950 /* ByteStream.swift */; };
+		0564ABC12A8B7F2400EF1950 /* DataStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABC02A8B7F2400EF1950 /* DataStream.swift */; };
 		05DED75C2A8AAC4900DA42F9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED75B2A8AAC4900DA42F9 /* main.swift */; };
 		05DED7AF2A8AAF1500DA42F9 /* Disassembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED7AE2A8AAF1500DA42F9 /* Disassembler.swift */; };
 		05DED7B12A8AAF1C00DA42F9 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED7B02A8AAF1C00DA42F9 /* Assembler.swift */; };
@@ -45,6 +52,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				0564AB962A8ABC2B00EF1950 /* wozmon.bin in CopyFiles */,
+				0564ABAF2A8ADEF900EF1950 /* wozmon.s in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +64,12 @@
 		0564AB772A8AB37F00EF1950 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		0564AB7B2A8AB53B00EF1950 /* RuntimeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeError.swift; sourceTree = "<group>"; };
 		0564AB922A8AB64E00EF1950 /* wozmon.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = wozmon.bin; sourceTree = "<group>"; };
+		0564ABAD2A8ADEF200EF1950 /* wozmon.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = wozmon.s; sourceTree = "<group>"; };
+		0564ABB02A8B712F00EF1950 /* SyntaxError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxError.swift; sourceTree = "<group>"; };
+		0564ABB22A8B729600EF1950 /* AssemblerInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerInstruction.swift; sourceTree = "<group>"; };
+		0564ABB42A8B733100EF1950 /* AssemblerVariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblerVariable.swift; sourceTree = "<group>"; };
+		0564ABBE2A8B7F1D00EF1950 /* ByteStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteStream.swift; sourceTree = "<group>"; };
+		0564ABC02A8B7F2400EF1950 /* DataStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStream.swift; sourceTree = "<group>"; };
 		05DED7582A8AAC4900DA42F9 /* xasm65 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xasm65; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DED75B2A8AAC4900DA42F9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05DED7622A8AACF900DA42F9 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -148,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				0564AB922A8AB64E00EF1950 /* wozmon.bin */,
+				0564ABAD2A8ADEF200EF1950 /* wozmon.s */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -335,6 +350,11 @@
 			isa = PBXGroup;
 			children = (
 				05DED7B02A8AAF1C00DA42F9 /* Assembler.swift */,
+				0564ABBE2A8B7F1D00EF1950 /* ByteStream.swift */,
+				0564ABC02A8B7F2400EF1950 /* DataStream.swift */,
+				0564ABB22A8B729600EF1950 /* AssemblerInstruction.swift */,
+				0564ABB42A8B733100EF1950 /* AssemblerVariable.swift */,
+				0564ABB02A8B712F00EF1950 /* SyntaxError.swift */,
 				05DED7AE2A8AAF1500DA42F9 /* Disassembler.swift */,
 				0564AB772A8AB37F00EF1950 /* Instruction.swift */,
 				0564AB7B2A8AB53B00EF1950 /* RuntimeError.swift */,
@@ -492,6 +512,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0564AB782A8AB37F00EF1950 /* Instruction.swift in Sources */,
+				0564ABB32A8B729600EF1950 /* AssemblerInstruction.swift in Sources */,
+				0564ABC12A8B7F2400EF1950 /* DataStream.swift in Sources */,
+				0564ABB52A8B733100EF1950 /* AssemblerVariable.swift in Sources */,
+				0564ABBF2A8B7F1D00EF1950 /* ByteStream.swift in Sources */,
+				0564ABB12A8B712F00EF1950 /* SyntaxError.swift in Sources */,
 				05DED7B12A8AAF1C00DA42F9 /* Assembler.swift in Sources */,
 				05DED7AF2A8AAF1500DA42F9 /* Disassembler.swift in Sources */,
 				0564AB7C2A8AB53B00EF1950 /* RuntimeError.swift in Sources */,
@@ -504,6 +529,7 @@
 			files = (
 				05DED7CD2A8AB02700DA42F9 /* Test-Assembler.swift in Sources */,
 				05DED7D52A8AB09D00DA42F9 /* Test-Disassembler.swift in Sources */,
+				0564ABAE2A8ADEF300EF1950 /* wozmon.s in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

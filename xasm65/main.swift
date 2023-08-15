@@ -27,10 +27,25 @@ import xasm65lib
 
 do
 {
-    let url          = Bundle.main.bundleURL.appendingPathComponent( "wozmon.bin" )
-    let disassembler = try Disassembler( url: url, origin: 0xFF00, options: [] )
+    let rom = try Data( contentsOf: Bundle.main.bundleURL.appendingPathComponent( "wozmon.bin" ) )
 
-    print( try disassembler.disassemble() )
+    print(
+        """
+        ;-------------------------------------------------------------------------------
+        ; Disassembler Test
+        ;-------------------------------------------------------------------------------
+        """
+    )
+    print( try Disassembler.disassemble( stream: DataStream( data: rom ), origin: 0xFF00, size: UInt64( rom.count ), options: [] ) )
+
+    print(
+        """
+        ;-------------------------------------------------------------------------------
+        ; Assembler Test
+        ;-------------------------------------------------------------------------------
+        """
+    )
+    print( try Assembler.assemble( url: Bundle.main.bundleURL.appendingPathComponent( "wozmon.s" ) ) )
 }
 catch
 {
