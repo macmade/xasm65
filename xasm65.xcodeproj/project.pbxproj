@@ -19,6 +19,7 @@
 		0564ABBF2A8B7F1D00EF1950 /* ByteStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABBE2A8B7F1D00EF1950 /* ByteStream.swift */; };
 		0564ABC12A8B7F2400EF1950 /* DataStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABC02A8B7F2400EF1950 /* DataStream.swift */; };
 		0564ABCA2A8BE50A00EF1950 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABC92A8BE50A00EF1950 /* String.swift */; };
+		0564ABDF2A8BFC8E00EF1950 /* Apple1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABDE2A8BFC8E00EF1950 /* Apple1.swift */; };
 		05DED75C2A8AAC4900DA42F9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED75B2A8AAC4900DA42F9 /* main.swift */; };
 		05DED7AF2A8AAF1500DA42F9 /* Disassembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED7AE2A8AAF1500DA42F9 /* Disassembler.swift */; };
 		05DED7B12A8AAF1C00DA42F9 /* Assembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05DED7B02A8AAF1C00DA42F9 /* Assembler.swift */; };
@@ -72,6 +73,7 @@
 		0564ABBE2A8B7F1D00EF1950 /* ByteStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ByteStream.swift; sourceTree = "<group>"; };
 		0564ABC02A8B7F2400EF1950 /* DataStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStream.swift; sourceTree = "<group>"; };
 		0564ABC92A8BE50A00EF1950 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		0564ABDE2A8BFC8E00EF1950 /* Apple1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Apple1.swift; sourceTree = "<group>"; };
 		05DED7582A8AAC4900DA42F9 /* xasm65 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = xasm65; sourceTree = BUILT_PRODUCTS_DIR; };
 		05DED75B2A8AAC4900DA42F9 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		05DED7622A8AACF900DA42F9 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				05DED75B2A8AAC4900DA42F9 /* main.swift */,
+				0564ABDE2A8BFC8E00EF1950 /* Apple1.swift */,
 			);
 			path = xasm65;
 			sourceTree = "<group>";
@@ -506,6 +509,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0564ABDF2A8BFC8E00EF1950 /* Apple1.swift in Sources */,
 				05DED75C2A8AAC4900DA42F9 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

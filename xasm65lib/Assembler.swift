@@ -69,7 +69,7 @@ public class Assembler
         }
 
         print( "Variables: " )
-        print( String.aligningComponents( in: variables,    componentSeparator: " ", lineSeparator: "\n" ) )
+        print( String.aligningComponents( in: variables, componentSeparator: " ", lineSeparator: "\n" ) )
         print( "Instructions: " )
         print( String.aligningComponents( in: instructions, componentSeparator: " ", lineSeparator: "\n" ) )
 

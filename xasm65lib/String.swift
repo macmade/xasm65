@@ -49,7 +49,7 @@ public extension String
             {
                 $0.element.padding( toLength: max[ $0.offset ], withPad: " ", startingAt: 0 )
             }
-            .joined( separator: componentSeparator )
+            .joined( separator: componentSeparator ).trimmingCharacters( in: .whitespaces )
         }
         .joined( separator: lineSeparator )
     }

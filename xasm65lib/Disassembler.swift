@@ -32,6 +32,8 @@ public class Disassembler
     private var instructions: UInt64
     private let stream:       ByteStream
     private let options:      Options
+    private var comments:     [ ( UInt16, String ) ]
+    private var labels:       [ ( UInt16, String ) ]
 
     public struct Options: OptionSet
     {
@@ -47,27 +49,27 @@ public class Disassembler
         }
     }
 
-    public class func disassemble( stream: ByteStream, origin: UInt16, size: UInt64, options: Options ) throws -> String
+    public class func disassemble( stream: ByteStream, origin: UInt16, size: UInt64, options: Options, comments: [ ( UInt16, String ) ] = [], labels: [ ( UInt16, String ) ] = [] ) throws -> String
     {
         if size == 0
         {
             throw RuntimeError( message: "" )
         }
 
-        return try Disassembler( stream: stream, origin: origin, size: size, instructions: 0, options: options ).disassemble()
+        return try Disassembler( stream: stream, origin: origin, size: size, instructions: 0, options: options, comments: comments, labels: labels ).disassemble()
     }
 
-    public class func disassemble( stream: ByteStream, origin: UInt16, instructions: UInt64, options: Options ) throws -> String
+    public class func disassemble( stream: ByteStream, origin: UInt16, instructions: UInt64, options: Options, comments: [ ( UInt16, String ) ] = [], labels: [ ( UInt16, String ) ] = [] ) throws -> String
     {
         if instructions == 0
         {
             throw RuntimeError( message: "" )
         }
 
-        return try Disassembler( stream: stream, origin: origin, size: 0, instructions: instructions, options: options ).disassemble()
+        return try Disassembler( stream: stream, origin: origin, size: 0, instructions: instructions, options: options, comments: comments, labels: labels ).disassemble()
     }
 
-    private init( stream: ByteStream, origin: UInt16, size: UInt64, instructions: UInt64, options: Options ) throws
+    private init( stream: ByteStream, origin: UInt16, size: UInt64, instructions: UInt64, options: Options, comments: [ ( UInt16, String ) ] = [], labels: [ ( UInt16, String ) ] = [] ) throws
     {
         self.origin       = origin
         self.address      = UInt64( origin )
@@ -75,6 +77,8 @@ public class Disassembler
         self.instructions = instructions
         self.stream       = stream
         self.options      = options.isEmpty ? [ .address, .bytes, .disassembly ] : options
+        self.comments     = comments
+        self.labels       = labels
     }
 
     private var dataAvailable: Bool
@@ -84,7 +88,7 @@ public class Disassembler
 
     private func disassemble() throws -> String
     {
-        var instructions: [ ( address: UInt64, bytes: [ UInt8 ], disassembly: String ) ] = []
+        var instructions: [ ( address: UInt64, bytes: [ UInt8 ], disassembly: String, label: String?, comment: String? ) ] = []
 
         while true
         {
@@ -100,13 +104,39 @@ public class Disassembler
             }
         }
 
+        let hasLabels   = instructions.first { $0.label?.isEmpty   == false } != nil
+        let hasComments = instructions.first { $0.comment?.isEmpty == false } != nil
+
         let strings = instructions.map
         {
-            [
-                String( format: "%04X:", $0.address ),
-                $0.bytes.map { String( format: "%02X", $0 ) }.joined( separator: " " ),
-                $0.disassembly,
-            ]
+            (
+                address:     String( format: "%04X:", $0.address ),
+                bytes:       $0.bytes.map { String( format: "%02X", $0 ) }.joined( separator: " " ),
+                label:       $0.label ?? "",
+                disassembly: $0.disassembly,
+                comment:     $0.comment ?? ""
+            )
+        }
+        .map
+        {
+            let comment = $0.comment.isEmpty ? "" : "; \( $0.comment )"
+
+            if hasLabels, hasComments
+            {
+                return [ $0.address, $0.bytes, $0.label, $0.disassembly, comment ]
+            }
+            else if hasLabels
+            {
+                return [ $0.address, $0.bytes, $0.label, $0.disassembly ]
+            }
+            else if hasComments
+            {
+                return [ $0.address, $0.bytes, $0.disassembly, comment ]
+            }
+            else
+            {
+                return [ $0.address, $0.bytes, $0.disassembly ]
+            }
         }
 
         return String.aligningComponents( in: strings, componentSeparator: "    ", lineSeparator: "\n" )
@@ -128,28 +158,28 @@ public class Disassembler
         return ( u2 << 8 ) | u1
     }
 
-    private func disassembleInstruction() throws -> ( UInt64, [ UInt8 ], String )
+    private func disassembleInstruction() throws -> ( address: UInt64, bytes: [ UInt8 ], disassembly: String, label: String?, comment: String? )
     {
         let address = self.address
 
-        if address == 0xFFFA { return ( address, [ try self.readUInt8() ], "(NMI: LSB)" ) }
-        if address == 0xFFFB { return ( address, [ try self.readUInt8() ], "(NMI: MSB)" ) }
-        if address == 0xFFFC { return ( address, [ try self.readUInt8() ], "(RESET: LSB)" ) }
-        if address == 0xFFFD { return ( address, [ try self.readUInt8() ], "(RESET: MSB)" ) }
-        if address == 0xFFFE { return ( address, [ try self.readUInt8() ], "(IRQ: LSB)" ) }
-        if address == 0xFFFF { return ( address, [ try self.readUInt8() ], "(IRQ: MSB)" ) }
+        if address == 0xFFFA { return ( address, [ try self.readUInt8() ], "", nil, "(NMI: LSB)" ) }
+        if address == 0xFFFB { return ( address, [ try self.readUInt8() ], "", nil, "(NMI: MSB)" ) }
+        if address == 0xFFFC { return ( address, [ try self.readUInt8() ], "", nil, "(RESET: LSB)" ) }
+        if address == 0xFFFD { return ( address, [ try self.readUInt8() ], "", nil, "(RESET: MSB)" ) }
+        if address == 0xFFFE { return ( address, [ try self.readUInt8() ], "", nil, "(IRQ: LSB)" ) }
+        if address == 0xFFFF { return ( address, [ try self.readUInt8() ], "", nil, "(IRQ: MSB)" ) }
 
         let opcode = try self.readUInt8()
 
         guard let instruction = Instruction.all.first( where: { $0.opcode == opcode } )
         else
         {
-            return ( address, [ opcode ], "???" )
+            return ( address, [ opcode ], "???", nil, nil )
         }
 
         if self.size > 0, ( address - UInt64( self.origin ) ) + UInt64( instruction.size ) > self.size
         {
-            return ( address, [ opcode ], "???" )
+            return ( address, [ opcode ], "???", nil, nil )
         }
 
         var bytes       = [ opcode ]
@@ -256,6 +286,12 @@ public class Disassembler
                 disassembly.append( "($\( String( format: "%02X", value ) )),Y" )
         }
 
-        return ( address, bytes, disassembly.joined( separator: " " ) )
+        return (
+            address,
+            bytes,
+            disassembly.joined( separator: " " ),
+            self.labels.first { $0.0 == address }?.1,
+            self.comments.first { $0.0 == address }?.1
+        )
     }
 }

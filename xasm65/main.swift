@@ -27,7 +27,7 @@ import xasm65lib
 
 do
 {
-    let rom = try Data( contentsOf: Bundle.main.bundleURL.appendingPathComponent( "wozmon.bin" ) )
+    let rom = try Apple1.rom
 
     print(
         """
@@ -36,8 +36,7 @@ do
         ;-------------------------------------------------------------------------------
         """
     )
-    print( try Disassembler.disassemble( stream: DataStream( data: rom ), origin: 0xFF00, size: UInt64( rom.count ), options: [] ) )
-
+    print( try Disassembler.disassemble( stream: DataStream( data: rom.data ), origin: 0xFF00, size: UInt64( rom.data.count ), options: [], comments: rom.comments, labels: rom.labels ) )
     print(
         """
         ;-------------------------------------------------------------------------------
@@ -45,7 +44,7 @@ do
         ;-------------------------------------------------------------------------------
         """
     )
-    print( try Assembler.assemble( url: Bundle.main.bundleURL.appendingPathComponent( "wozmon.s" ) ) )
+    print( try Assembler.assemble( url: Apple1.asm ) )
 }
 catch
 {
