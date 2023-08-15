@@ -12,6 +12,11 @@ xasm65
 
 A MOS 6502 assembler/disassembler written in Swift.
 
+**Cloning:**  
+This repository uses submodules. Please clone with:
+
+    git clone --recursive https://github.com/macmade/MOS-6502-Emulator.git
+
 License
 -------
 
