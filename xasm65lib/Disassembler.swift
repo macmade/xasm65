@@ -121,24 +121,15 @@ public class Disassembler
         }
         .map
         {
-            let comment = $0.comment.isEmpty ? "" : "; \( $0.comment )"
+            var components: [ String ] = []
 
-            if hasLabels, hasComments
-            {
-                return [ $0.address, $0.bytes, $0.label, $0.disassembly, comment ]
-            }
-            else if hasLabels
-            {
-                return [ $0.address, $0.bytes, $0.label, $0.disassembly ]
-            }
-            else if hasComments
-            {
-                return [ $0.address, $0.bytes, $0.disassembly, comment ]
-            }
-            else
-            {
-                return [ $0.address, $0.bytes, $0.disassembly ]
-            }
+            if self.options.contains( .address     ) { components.append( $0.address ) }
+            if self.options.contains( .bytes       ) { components.append( $0.bytes ) }
+            if hasLabels                             { components.append( $0.label ) }
+            if self.options.contains( .disassembly ) { components.append( $0.disassembly ) }
+            if hasComments                           { components.append( $0.comment.isEmpty ? "" : "; \( $0.comment )" ) }
+
+            return components
         }
 
         return String.aligningComponents( in: strings, componentSeparator: self.separator, lineSeparator: "\n" )
