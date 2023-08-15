@@ -56,19 +56,22 @@ public class Assembler
 
     private func assemble() throws -> Data
     {
-        let ( instructions, variables ) = try Assembler.components( in: Assembler.tokens( in: self.source ) )
+        let components = try Assembler.components( in: Assembler.tokens( in: self.source ) )
 
-        variables.forEach
+        let variables = components.variables.map
         {
-            print( "\( $0.line ): \( $0.name ) = \( $0.value )" )
+            [ "    \( $0.line ):", $0.name, "=", $0.value ]
         }
 
-        instructions.forEach
+        let instructions = components.instructions.map
         {
-            let tokens = [ $0.label, $0.mnemonic, $0.operand ].compactMap { $0 }
-
-            print( "\( $0.line ): \( tokens.joined( separator: " " ) )" )
+            [ "    \( $0.line ):", $0.label ?? "", $0.mnemonic, $0.operand ?? "" ]
         }
+
+        print( "Variables: " )
+        print( String.aligningComponents( in: variables,    componentSeparator: " ", lineSeparator: "\n" ) )
+        print( "Instructions: " )
+        print( String.aligningComponents( in: instructions, componentSeparator: " ", lineSeparator: "\n" ) )
 
         return Data()
     }

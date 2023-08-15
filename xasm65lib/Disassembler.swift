@@ -102,48 +102,14 @@ public class Disassembler
 
         let strings = instructions.map
         {
-            (
-                address:     String( format: "%04X", $0.address ),
-                bytes:       $0.bytes.map { String( format: "%02X", $0 ) }.joined( separator: " " ),
-                disassembly: $0.disassembly
-            )
+            [
+                String( format: "%04X:", $0.address ),
+                $0.bytes.map { String( format: "%02X", $0 ) }.joined( separator: " " ),
+                $0.disassembly,
+            ]
         }
 
-        let maxAddress = strings.reduce( 0 )
-        {
-            $0 > $1.address.count ? $0 : $1.address.count
-        }
-
-        let maxBytes = strings.reduce( 0 )
-        {
-            $0 > $1.bytes.count ? $0 : $1.bytes.count
-        }
-
-        return strings.map
-        {
-            let address     = $0.address.padding( toLength: maxAddress, withPad: " ", startingAt: 0 )
-            let bytes       = $0.bytes.padding(   toLength: maxBytes,   withPad: " ", startingAt: 0 )
-            let disassembly = $0.disassembly
-            var strings     = [ String ]()
-
-            if self.options.contains( .address )
-            {
-                strings.append( "\( address ):" )
-            }
-
-            if self.options.contains( .bytes )
-            {
-                strings.append( bytes )
-            }
-
-            if self.options.contains( .disassembly )
-            {
-                strings.append( disassembly )
-            }
-
-            return strings.joined( separator: "    " )
-        }
-        .joined( separator: "\n" )
+        return String.aligningComponents( in: strings, componentSeparator: "    ", lineSeparator: "\n" )
     }
 
     private func readUInt8() throws -> UInt8
