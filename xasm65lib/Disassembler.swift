@@ -32,8 +32,8 @@ public class Disassembler
     private var instructions: UInt64
     private let stream:       ByteStream
     private let options:      Options
-    private var comments:     [ ( UInt16, String ) ]
-    private var labels:       [ ( UInt16, String ) ]
+    private var comments:     [ UInt16: String ]
+    private var labels:       [ UInt16: String ]
 
     public struct Options: OptionSet
     {
@@ -49,7 +49,7 @@ public class Disassembler
         }
     }
 
-    public class func disassemble( stream: ByteStream, origin: UInt16, size: UInt64, options: Options, comments: [ ( UInt16, String ) ] = [], labels: [ ( UInt16, String ) ] = [] ) throws -> String
+    public class func disassemble( stream: ByteStream, origin: UInt16, size: UInt64, options: Options, comments: [ UInt16: String ] = [ : ], labels: [ UInt16: String ] = [ : ] ) throws -> String
     {
         if size == 0
         {
@@ -59,7 +59,7 @@ public class Disassembler
         return try Disassembler( stream: stream, origin: origin, size: size, instructions: 0, options: options, comments: comments, labels: labels ).disassemble()
     }
 
-    public class func disassemble( stream: ByteStream, origin: UInt16, instructions: UInt64, options: Options, comments: [ ( UInt16, String ) ] = [], labels: [ ( UInt16, String ) ] = [] ) throws -> String
+    public class func disassemble( stream: ByteStream, origin: UInt16, instructions: UInt64, options: Options, comments: [ UInt16: String ] = [ : ], labels: [ UInt16: String ] = [ : ] ) throws -> String
     {
         if instructions == 0
         {
@@ -69,7 +69,7 @@ public class Disassembler
         return try Disassembler( stream: stream, origin: origin, size: 0, instructions: instructions, options: options, comments: comments, labels: labels ).disassemble()
     }
 
-    private init( stream: ByteStream, origin: UInt16, size: UInt64, instructions: UInt64, options: Options, comments: [ ( UInt16, String ) ] = [], labels: [ ( UInt16, String ) ] = [] ) throws
+    private init( stream: ByteStream, origin: UInt16, size: UInt64, instructions: UInt64, options: Options, comments: [ UInt16: String ], labels: [ UInt16: String ] ) throws
     {
         self.origin       = origin
         self.address      = UInt64( origin )
@@ -290,8 +290,8 @@ public class Disassembler
             address,
             bytes,
             disassembly.joined( separator: " " ),
-            self.labels.first { $0.0 == address }?.1,
-            self.comments.first { $0.0 == address }?.1
+            address > UInt16.max ? nil : self.labels[   UInt16( address & 0xFFFF ) ],
+            address > UInt16.max ? nil : self.comments[ UInt16( address & 0xFFFF ) ]
         )
     }
 }
