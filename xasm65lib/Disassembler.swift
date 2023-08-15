@@ -26,10 +26,12 @@ import Foundation
 
 public class Disassembler
 {
-    private let origin:  UInt16
-    private let data:    Data
-    private let options: Options
-    private var offset:  Int = 0
+    private let origin:       UInt16
+    private var address:      UInt64
+    private var size:         UInt64
+    private var instructions: UInt64
+    private let stream:       ByteStream
+    private let options:      Options
 
     public struct Options: OptionSet
     {
@@ -45,32 +47,57 @@ public class Disassembler
         }
     }
 
-    public convenience init( url: URL, origin: UInt16, options: Options ) throws
+    public class func disassemble( stream: ByteStream, origin: UInt16, size: UInt64, options: Options ) throws -> String
     {
-        try self.init( data: try Data( contentsOf: url ), origin: origin, options: options )
+        if size == 0
+        {
+            throw RuntimeError( message: "" )
+        }
+
+        return try Disassembler( stream: stream, origin: origin, size: size, instructions: 0, options: options ).disassemble()
     }
 
-    public init( data: Data, origin: UInt16, options: Options ) throws
+    public class func disassemble( stream: ByteStream, origin: UInt16, instructions: UInt64, options: Options ) throws -> String
     {
-        self.origin  = origin
-        self.data    = data
-        self.options = options.isEmpty ? [ .address, .bytes, .disassembly ] : options
+        if instructions == 0
+        {
+            throw RuntimeError( message: "" )
+        }
+
+        return try Disassembler( stream: stream, origin: origin, size: 0, instructions: instructions, options: options ).disassemble()
+    }
+
+    private init( stream: ByteStream, origin: UInt16, size: UInt64, instructions: UInt64, options: Options ) throws
+    {
+        self.origin       = origin
+        self.address      = UInt64( origin )
+        self.size         = size
+        self.instructions = instructions
+        self.stream       = stream
+        self.options      = options.isEmpty ? [ .address, .bytes, .disassembly ] : options
     }
 
     private var dataAvailable: Bool
     {
-        self.offset < self.data.count
+        return true
     }
 
-    public func disassemble() throws -> String
+    private func disassemble() throws -> String
     {
-        self.offset = 0
-
         var instructions: [ ( address: UInt64, bytes: [ UInt8 ], disassembly: String ) ] = []
 
-        while self.dataAvailable
+        while true
         {
             instructions.append( try self.disassembleInstruction() )
+
+            if self.instructions > 0, instructions.count == self.instructions
+            {
+                break
+            }
+            else if self.size > 0, self.address - UInt64( self.origin ) >= self.size
+            {
+                break
+            }
         }
 
         let strings = instructions.map
@@ -121,16 +148,10 @@ public class Disassembler
 
     private func readUInt8() throws -> UInt8
     {
-        guard self.offset < self.data.count
-        else
-        {
-            throw RuntimeError( message: "Index out of bounds: \( self.offset )" )
-        }
+        let value     = try self.stream.readUInt8()
+        self.address += 1
 
-        let u        = self.data[ self.offset ]
-        self.offset += 1
-
-        return u
+        return value
     }
 
     private func readUInt16() throws -> UInt16
@@ -143,31 +164,24 @@ public class Disassembler
 
     private func disassembleInstruction() throws -> ( UInt64, [ UInt8 ], String )
     {
-        let address = UInt64( self.origin ) + UInt64( self.offset )
+        let address = self.address
 
-        if address == 0xFFFA, self.offset + 2 <= self.data.count
-        {
-            let value = try self.readUInt16()
-
-            return ( address, [ UInt8( value & 0xFF ), UInt8( ( value >> 8 ) & 0xFF ) ], "(NMI)" )
-        }
-        else if address == 0xFFFC, self.offset + 2 <= self.data.count
-        {
-            let value = try self.readUInt16()
-
-            return ( address, [ UInt8( value & 0xFF ), UInt8( ( value >> 8 ) & 0xFF ) ], "(RESET)" )
-        }
-        else if address == 0xFFFE, self.offset + 2 <= self.data.count
-        {
-            let value = try self.readUInt16()
-
-            return ( address, [ UInt8( value & 0xFF ), UInt8( ( value >> 8 ) & 0xFF ) ], "(IRQ)" )
-        }
+        if address == 0xFFFA { return ( address, [ try self.readUInt8() ], "(NMI: LSB)" ) }
+        if address == 0xFFFB { return ( address, [ try self.readUInt8() ], "(NMI: MSB)" ) }
+        if address == 0xFFFC { return ( address, [ try self.readUInt8() ], "(RESET: LSB)" ) }
+        if address == 0xFFFD { return ( address, [ try self.readUInt8() ], "(RESET: MSB)" ) }
+        if address == 0xFFFE { return ( address, [ try self.readUInt8() ], "(IRQ: LSB)" ) }
+        if address == 0xFFFF { return ( address, [ try self.readUInt8() ], "(IRQ: MSB)" ) }
 
         let opcode = try self.readUInt8()
 
         guard let instruction = Instruction.all.first( where: { $0.opcode == opcode } )
         else
+        {
+            return ( address, [ opcode ], "???" )
+        }
+
+        if self.size > 0, ( address - UInt64( self.origin ) ) + UInt64( instruction.size ) > self.size
         {
             return ( address, [ opcode ], "???" )
         }
