@@ -70,7 +70,7 @@ public class Disassembler
         return try Disassembler( stream: stream, origin: origin, size: 0, instructions: instructions, options: options, separator: separator, comments: comments, labels: labels ).disassemble()
     }
 
-    private init( stream: ByteStream, origin: UInt16, size: UInt64, instructions: UInt64, options: Options, separator: String, comments: [ UInt16: String ], labels: [ UInt16: String ] ) throws
+    public init( stream: ByteStream, origin: UInt16, size: UInt64, instructions: UInt64, options: Options, separator: String, comments: [ UInt16: String ], labels: [ UInt16: String ] ) throws
     {
         self.origin       = origin
         self.address      = UInt64( origin )
@@ -88,7 +88,7 @@ public class Disassembler
         return true
     }
 
-    private func disassemble() throws -> String
+    public func disassemble() throws -> String
     {
         var instructions: [ ( address: UInt64, bytes: [ UInt8 ], disassembly: String, label: String?, comment: String? ) ] = []
 
