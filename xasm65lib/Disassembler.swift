@@ -56,7 +56,7 @@ public class Disassembler
     {
         if size == 0
         {
-            throw RuntimeError( message: "" )
+            throw RuntimeError( message: "Invalid size: \( size )" )
         }
 
         return try Disassembler( stream: stream, origin: origin, size: size, instructions: 0, options: options, separator: separator, comments: comments, labels: labels ).disassemble()
@@ -66,7 +66,7 @@ public class Disassembler
     {
         if instructions == 0
         {
-            throw RuntimeError( message: "" )
+            throw RuntimeError( message: "Invalid instruction count: \( instructions )" )
         }
 
         return try Disassembler( stream: stream, origin: origin, size: 0, instructions: instructions, options: options, separator: separator, comments: comments, labels: labels ).disassemble()
@@ -163,35 +163,39 @@ public class Disassembler
 
             return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(NMI: LSB)" )
         }
-        if address == 0xFFFB
+        else if address == 0xFFFB
         {
             let byte = try self.readUInt8()
 
             return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(NMI: MSB)" )
         }
-        if address == 0xFFFC
+        else if address == 0xFFFC
         {
             let byte = try self.readUInt8()
 
             return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(RESET: LSB)" )
         }
-        if address == 0xFFFD
+        else if address == 0xFFFD
         {
             let byte = try self.readUInt8()
 
             return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(RESET: MSB)" )
         }
-        if address == 0xFFFE
+        else if address == 0xFFFE
         {
             let byte = try self.readUInt8()
 
             return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(IRQ: LSB)" )
         }
-        if address == 0xFFFF
+        else if address == 0xFFFF
         {
             let byte = try self.readUInt8()
 
             return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(IRQ: MSB)" )
+        }
+        else if address > UInt16.max
+        {
+            throw RuntimeError( message: "Invalid address: \( String( format: "%X", address ) )" )
         }
 
         let opcode = try self.readUInt8()
