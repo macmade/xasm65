@@ -79,7 +79,7 @@ public class Disassembler
         self.size         = size
         self.instructions = instructions
         self.stream       = stream
-        self.options      = options.isEmpty ? [ .address, .bytes, .disassembly ] : options
+        self.options      = options.isEmpty ? [ .address, .bytes, .labels, .disassembly, .comments ] : options
         self.separator    = separator
         self.comments     = comments
         self.labels       = labels
