@@ -40,7 +40,9 @@ public class Disassembler
     {
         public static var address:     Options { Options( rawValue: 1 << 0 ) }
         public static var bytes:       Options { Options( rawValue: 1 << 1 ) }
-        public static var disassembly: Options { Options( rawValue: 1 << 2 ) }
+        public static var labels:      Options { Options( rawValue: 1 << 3 ) }
+        public static var disassembly: Options { Options( rawValue: 1 << 4 ) }
+        public static var comments:    Options { Options( rawValue: 1 << 5 ) }
 
         public let rawValue: Int
 
@@ -106,8 +108,8 @@ public class Disassembler
             }
         }
 
-        let hasLabels   = instructions.first { $0.label?.isEmpty   == false } != nil
-        let hasComments = instructions.first { $0.comment?.isEmpty == false } != nil
+        let hasLabels   = instructions.first { $0.label?.isEmpty   == false } != nil && self.options.contains( .labels )
+        let hasComments = instructions.first { $0.comment?.isEmpty == false } != nil && self.options.contains( .comments )
 
         let strings = instructions.map
         {
@@ -155,12 +157,42 @@ public class Disassembler
     {
         let address = self.address
 
-        if address == 0xFFFA { return ( address, [ try self.readUInt8() ], "", nil, "(NMI: LSB)" ) }
-        if address == 0xFFFB { return ( address, [ try self.readUInt8() ], "", nil, "(NMI: MSB)" ) }
-        if address == 0xFFFC { return ( address, [ try self.readUInt8() ], "", nil, "(RESET: LSB)" ) }
-        if address == 0xFFFD { return ( address, [ try self.readUInt8() ], "", nil, "(RESET: MSB)" ) }
-        if address == 0xFFFE { return ( address, [ try self.readUInt8() ], "", nil, "(IRQ: LSB)" ) }
-        if address == 0xFFFF { return ( address, [ try self.readUInt8() ], "", nil, "(IRQ: MSB)" ) }
+        if address == 0xFFFA
+        {
+            let byte = try self.readUInt8()
+
+            return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(NMI: LSB)" )
+        }
+        if address == 0xFFFB
+        {
+            let byte = try self.readUInt8()
+
+            return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(NMI: MSB)" )
+        }
+        if address == 0xFFFC
+        {
+            let byte = try self.readUInt8()
+
+            return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(RESET: LSB)" )
+        }
+        if address == 0xFFFD
+        {
+            let byte = try self.readUInt8()
+
+            return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(RESET: MSB)" )
+        }
+        if address == 0xFFFE
+        {
+            let byte = try self.readUInt8()
+
+            return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(IRQ: LSB)" )
+        }
+        if address == 0xFFFF
+        {
+            let byte = try self.readUInt8()
+
+            return ( address, [ byte ], String( format: "db $%02X", byte ), nil, "(IRQ: MSB)" )
+        }
 
         let opcode = try self.readUInt8()
 
