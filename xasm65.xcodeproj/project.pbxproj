@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05589B0C2A95E05D00C22F10 /* XSLabsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 05589B0B2A95E05D00C22F10 /* XSLabsSwift */; };
+		05589B102A95E07100C22F10 /* XSLabsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 05589B0F2A95E07100C22F10 /* XSLabsSwift */; };
 		0564AB782A8AB37F00EF1950 /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564AB772A8AB37F00EF1950 /* Instruction.swift */; };
-		0564AB7C2A8AB53B00EF1950 /* RuntimeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564AB7B2A8AB53B00EF1950 /* RuntimeError.swift */; };
 		0564AB962A8ABC2B00EF1950 /* wozmon.bin in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0564AB922A8AB64E00EF1950 /* wozmon.bin */; };
 		0564ABB12A8B712F00EF1950 /* SyntaxError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABB02A8B712F00EF1950 /* SyntaxError.swift */; };
 		0564ABB32A8B729600EF1950 /* AssemblerInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0564ABB22A8B729600EF1950 /* AssemblerInstruction.swift */; };
@@ -64,7 +65,6 @@
 		0564AB752A8AB18500EF1950 /* xasm65lib.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = xasm65lib.xctestplan; sourceTree = "<group>"; };
 		0564AB762A8AB19100EF1950 /* xasm65.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = xasm65.xctestplan; sourceTree = "<group>"; };
 		0564AB772A8AB37F00EF1950 /* Instruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
-		0564AB7B2A8AB53B00EF1950 /* RuntimeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeError.swift; sourceTree = "<group>"; };
 		0564AB922A8AB64E00EF1950 /* wozmon.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = wozmon.bin; sourceTree = "<group>"; };
 		0564ABAD2A8ADEF200EF1950 /* wozmon.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; path = wozmon.s; sourceTree = "<group>"; };
 		0564ABB02A8B712F00EF1950 /* SyntaxError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxError.swift; sourceTree = "<group>"; };
@@ -141,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05DED7B32A8AAF4200DA42F9 /* libxasm65lib.a in Frameworks */,
+				05589B0C2A95E05D00C22F10 /* XSLabsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +157,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05DED7CE2A8AB02700DA42F9 /* libxasm65lib.a in Frameworks */,
+				05589B102A95E07100C22F10 /* XSLabsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,7 +365,6 @@
 				0564ABB02A8B712F00EF1950 /* SyntaxError.swift */,
 				05DED7AE2A8AAF1500DA42F9 /* Disassembler.swift */,
 				0564AB772A8AB37F00EF1950 /* Instruction.swift */,
-				0564AB7B2A8AB53B00EF1950 /* RuntimeError.swift */,
 			);
 			path = xasm65lib;
 			sourceTree = "<group>";
@@ -412,6 +413,9 @@
 				05DED7B52A8AAF4200DA42F9 /* PBXTargetDependency */,
 			);
 			name = xasm65;
+			packageProductDependencies = (
+				05589B0B2A95E05D00C22F10 /* XSLabsSwift */,
+			);
 			productName = xasm65;
 			productReference = 05DED7582A8AAC4900DA42F9 /* xasm65 */;
 			productType = "com.apple.product-type.tool";
@@ -427,6 +431,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				05589B0E2A95E06900C22F10 /* PBXTargetDependency */,
 			);
 			name = xasm65lib;
 			productName = xasm65lib;
@@ -447,6 +452,9 @@
 				05DED7D02A8AB02700DA42F9 /* PBXTargetDependency */,
 			);
 			name = "xasm65-tests";
+			packageProductDependencies = (
+				05589B0F2A95E07100C22F10 /* XSLabsSwift */,
+			);
 			productName = "xasm65-tests";
 			productReference = 05DED7CA2A8AB02700DA42F9 /* xasm65-tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -482,6 +490,9 @@
 				Base,
 			);
 			mainGroup = 05DED74F2A8AAC4900DA42F9;
+			packageReferences = (
+				05589B0A2A95E05D00C22F10 /* XCRemoteSwiftPackageReference "XSLabsSwift" */,
+			);
 			productRefGroup = 05DED7592A8AAC4900DA42F9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -528,7 +539,6 @@
 				0564ABB12A8B712F00EF1950 /* SyntaxError.swift in Sources */,
 				05DED7B12A8AAF1C00DA42F9 /* Assembler.swift in Sources */,
 				05DED7AF2A8AAF1500DA42F9 /* Disassembler.swift in Sources */,
-				0564AB7C2A8AB53B00EF1950 /* RuntimeError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +554,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		05589B0E2A95E06900C22F10 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 05589B0D2A95E06900C22F10 /* XSLabsSwift */;
+		};
 		05DED7B52A8AAF4200DA42F9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 05DED7A42A8AAF0300DA42F9 /* xasm65lib */;
@@ -667,6 +681,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		05589B0A2A95E05D00C22F10 /* XCRemoteSwiftPackageReference "XSLabsSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/macmade/XSLabsSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		05589B0B2A95E05D00C22F10 /* XSLabsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05589B0A2A95E05D00C22F10 /* XCRemoteSwiftPackageReference "XSLabsSwift" */;
+			productName = XSLabsSwift;
+		};
+		05589B0D2A95E06900C22F10 /* XSLabsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05589B0A2A95E05D00C22F10 /* XCRemoteSwiftPackageReference "XSLabsSwift" */;
+			productName = XSLabsSwift;
+		};
+		05589B0F2A95E07100C22F10 /* XSLabsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05589B0A2A95E05D00C22F10 /* XCRemoteSwiftPackageReference "XSLabsSwift" */;
+			productName = XSLabsSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 05DED7502A8AAC4900DA42F9 /* Project object */;
 }
